@@ -1,0 +1,55 @@
+---
+import Rescue from '../layouts/Rescue.astro';
+---
+<Rescue title="Accessibility statement" description="How this site was tested for accessibility, with the results.">
+  <div class="wrap prose">
+    <h1>Accessibility statement</h1>
+    <p>This site aims to meet WCAG 2.2 level AA. It is a concept project and the rescue is fictional, but the tests below were run on this site.</p>
+
+    <h2>Test results, October 28, 2026</h2>
+    <table>
+      <caption>Automated and scripted checks</caption>
+      <thead><tr><th scope="col">Check</th><th scope="col">Result</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">axe-core (WCAG 2.0, 2.1 and 2.2 A and AA, plus best practices)</th><td>0 violations on 9 pages, at phone and desktop sizes</td></tr>
+        <tr><th scope="row">axe-core on the tool in use: sign-up form open, form with errors, after signing up, coordinator view, and the reset and add-shift error states</th><td>0 violations, at phone and desktop sizes</td></tr>
+        <tr><th scope="row">Lighthouse accessibility (8 pages, phone profile)</th><td>100 on every page</td></tr>
+        <tr><th scope="row">Lighthouse performance</th><td>100 on every page; the volunteer pages weigh about 20 KB</td></tr>
+        <tr><th scope="row">Lighthouse best practices</th><td>100 on every page</td></tr>
+        <tr><th scope="row">Keyboard</th><td>Skip link is the first stop and every stop shows a visible focus ring, including the date field</td></tr>
+        <tr><th scope="row">Reflow at 320 and 640 pixels wide</th><td>No horizontal scrolling</td></tr>
+        <tr><th scope="row">Text spacing</th><td>No clipped text</td></tr>
+        <tr><th scope="row">Structure</th><td>One h1 per page, no skipped heading levels, every page has a title and description</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The volunteer tool</h2>
+    <ul>
+      <li>Every field has a visible label and the correct autocomplete hint.</li>
+      <li>If a sign-up form has a mistake, a message appears next to the field and keyboard focus moves to the first problem.</li>
+      <li>After you sign up or cancel, the result is announced to screen readers and focus stays where you can keep working.</li>
+      <li>Shifts that are full say "Full" in text, not only in color. The spots-open count uses text, not a bar.</li>
+      <li>Resetting the demo data takes two steps, so it cannot happen by accident.</li>
+      <li>On narrow screens the coordinator table stacks into labelled rows.</li>
+    </ul>
+    <p>Everything is stored only in your own browser. Nothing is sent to a server.</p>
+
+    <h2>Charts</h2>
+    <p>The impact chart is a plain list with the year and the number written out, so the bars add to the text and are not the only way to read the figures.</p>
+
+    <h2>What was fixed during testing</h2>
+    <ul>
+      <li>The coordinator table scrolled sideways on a 320 pixel screen. It now stacks.</li>
+      <li>The date field's focus ring was not detected. It now has an explicit one.</li>
+      <li>The sign-up confirmation ended with a doubled period. It no longer does.</li>
+    </ul>
+
+    <h2>Not yet tested</h2>
+    <ul>
+      <li>Manual screen reader testing (VoiceOver, NVDA), including the announcements after sign-up and cancel. This statement will be updated when it is done.</li>
+      <li>Lighthouse "SEO" shows 60, not 100, because the site is deliberately marked <code>noindex</code> so search engines skip this concept project.</li>
+    </ul>
+
+    <p>Tools: axe-core, Lighthouse 12, and Nest Co.'s own scripted checks.</p>
+  </div>
+</Rescue>

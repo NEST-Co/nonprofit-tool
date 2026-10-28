@@ -1,0 +1,35 @@
+---
+import Rescue from '../layouts/Rescue.astro';
+const data = [
+  { year: '2021', n: 112 }, { year: '2022', n: 138 }, { year: '2023', n: 151 },
+  { year: '2024', n: 176 }, { year: '2025', n: 194 }, { year: '2026', n: 163, note: 'so far, to October' },
+];
+const max = Math.max(...data.map((d) => d.n));
+---
+<Rescue title="Our impact" description="How many animals Maple Hollow Animal Rescue has placed in homes each year.">
+  <style>
+    .hbars{list-style:none;padding:0;margin:0}
+    .hbars li{display:grid;grid-template-columns:6.5rem 1fr;gap:.5rem;align-items:center;max-width:none;padding:.3rem 0}
+    .track{display:flex;align-items:center;gap:.6rem}
+    .fill{display:block;height:1.6rem;background:var(--brand);border-radius:0 4px 4px 0;min-width:2px}
+    .val{font-weight:700}
+    .yr{font-weight:700}
+  </style>
+  <div class="wrap prose">
+    <h1>Our impact</h1>
+    <p>These figures are invented for this concept site. A real organization would use its own records.</p>
+    <figure>
+      <figcaption id="cap">Animals adopted each year</figcaption>
+      <ol class="hbars" aria-labelledby="cap">
+        {data.map((d) => (
+          <li><span class="yr">{d.year}</span>
+            <span class="track"><span class="fill" aria-hidden="true" style={`width:${(d.n / max) * 80}%`}></span><span class="val">{d.n}{d.note && <span class="meta"> ({d.note})</span>}</span></span></li>
+        ))}
+      </ol>
+    </figure>
+    <h2>Where a gift goes</h2>
+    <ul>
+      <li>Food and supplies</li><li>Vet care, including vaccines and spay or neuter surgery</li><li>Bedding, toys and cleaning supplies</li>
+    </ul>
+  </div>
+</Rescue>

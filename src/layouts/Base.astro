@@ -1,0 +1,26 @@
+---
+import '../styles/global.css';
+import ConceptBanner from '../components/ConceptBanner.astro';
+
+interface Props { title: string; description?: string; siteName?: string }
+const { title, description = '', siteName = 'Concept Site' } = Astro.props;
+const fullTitle = title === siteName ? title : `${title} | ${siteName}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>{fullTitle}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <ConceptBanner />
+    <header role="banner"><slot name="header" /></header>
+    <main id="main" tabindex="-1"><slot /></main>
+    <footer role="contentinfo"><slot name="footer" /></footer>
+  </body>
+</html>

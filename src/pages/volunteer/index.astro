@@ -1,0 +1,12 @@
+---
+import Rescue from '../../layouts/Rescue.astro';
+import ShiftBoard from '../../components/ShiftBoard.tsx';
+---
+<Rescue title="Volunteer shifts" description="Pick a volunteer shift at Maple Hollow Animal Rescue and sign up online.">
+  <div class="wrap">
+    <h1>Volunteer shifts</h1>
+    <p>Choose a shift, add your name and email, and you are signed up. You can cancel from this page.</p>
+    <ShiftBoard client:load />
+    <noscript><p>Sign-up needs JavaScript in this demo. A real site would also take sign-ups by email or phone.</p></noscript>
+  </div>
+</Rescue>
