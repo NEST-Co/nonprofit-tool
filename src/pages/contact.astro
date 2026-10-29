@@ -1,10 +1,12 @@
 ---
 import Rescue from '../layouts/Rescue.astro';
 ---
-<Rescue title="Contact" description="How to reach Maple Hollow Animal Rescue.">
-  <div class="wrap prose">
-    <h1>Contact us</h1>
-    <p>27 Orchard Road, Maple Hollow<br />Phone: (555) 010-0177<br />Email: <a href="mailto:hello@maplehollow-rescue.example">hello@maplehollow-rescue.example</a></p>
-    <p>This is a concept site, so there is no contact form.</p>
+<Rescue title="Contact" description="How to reach Maple Hollow Animal Rescue." eyebrow="Say hello" heading="Contact us" lead="This is a concept site, so there is no contact form.">
+  <div class="wrap body">
+    <div class="grid3" style="list-style:none">
+      <div class="panel"><h2>Visit</h2><p>27 Orchard Road, Maple Hollow</p></div>
+      <div class="panel"><h2>Call</h2><p>(555) 010-0177</p></div>
+      <div class="panel"><h2>Email</h2><p><a href="mailto:hello@maplehollow-rescue.example">hello@maplehollow-rescue.example</a></p></div>
+    </div>
   </div>
 </Rescue>

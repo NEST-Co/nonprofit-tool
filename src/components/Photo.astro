@@ -1,0 +1,22 @@
+---
+import { Picture } from 'astro:assets';
+import hero from '../assets/hero.jpg';
+import walk from '../assets/walk.jpg';
+import cats from '../assets/cats.jpg';
+import event from '../assets/event.jpg';
+import transport from '../assets/transport.jpg';
+import foster from '../assets/foster.jpg';
+import adoption from '../assets/adoption.jpg';
+import supplies from '../assets/supplies.jpg';
+import shelter from '../assets/shelter.jpg';
+import dog1 from '../assets/adoptable-dog-1.jpg';
+import dog2 from '../assets/adoptable-dog-2.jpg';
+import cat1 from '../assets/adoptable-cat-1.jpg';
+import cat2 from '../assets/adoptable-cat-2.jpg';
+interface Props { name: 'hero' | 'walk' | 'cats' | 'event' | 'transport' | 'foster' | 'adoption' | 'supplies' | 'shelter' | 'dog1' | 'dog2' | 'cat1' | 'cat2'; alt?: string; eager?: boolean; sizes?: string; class?: string }
+const { name, alt = '', eager = false, sizes = '(min-width: 700px) 50vw, 100vw', class: cls = '' } = Astro.props;
+const images = { hero, walk, cats, event, transport, foster, adoption, supplies, shelter, dog1, dog2, cat1, cat2 };
+const widths = name === 'hero' ? [640, 960, 1280] : [400, 800, 1200];
+---
+<Picture src={images[name]} alt={alt} formats={['avif', 'webp']} widths={widths} sizes={sizes}
+  loading={eager ? 'eager' : 'lazy'} fetchpriority={eager ? 'high' : 'auto'} decoding={eager ? 'sync' : 'async'} class={`pic ${cls}`.trim()} />

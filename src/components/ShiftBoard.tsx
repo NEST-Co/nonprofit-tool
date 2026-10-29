@@ -3,6 +3,7 @@ import { baseShifts, roles, fmtDate, type Shift } from '../data/shifts';
 import { load, subscribe, addSignup, removeSignup, type State } from '../lib/store';
 
 const empty: State = { signups: [], extraShifts: [] };
+const roleImg = (role: string) => `/img/roles/${role.toLowerCase().replace(/[^a-z]+/g, '-')}.jpg`;
 const EMAIL = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
 
 export default function ShiftBoard() {
@@ -82,6 +83,8 @@ export default function ShiftBoard() {
           const n = left(s), isOpen = openId === s.id;
           return (
             <li class="shift">
+              <img class="shift-pic" src={roleImg(s.role)} alt="" width="640" height="427" loading="lazy" />
+              <div class="shift-body">
               <h2 id={`h-${s.id}`} tabIndex={-1}>{s.role}</h2>
               <p class="when"><time dateTime={s.date}>{fmtDate(s.date)}</time> · {s.time}</p>
               <p>{s.note}</p>
@@ -111,6 +114,7 @@ export default function ShiftBoard() {
                   <button class="btn" type="submit">Confirm sign-up</button>
                 </form>
               )}
+              </div>
             </li>
           );
         })}

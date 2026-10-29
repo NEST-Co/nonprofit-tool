@@ -1,0 +1,25 @@
+---
+import Rescue from '../layouts/Rescue.astro';
+import Photo from '../components/Photo.astro';
+const pets = [
+  { n: 'dog1', name: 'Scout', kind: 'Dog', desc: 'Shepherd mix', alt: 'Scout, a friendly shepherd-mix dog smiling at the camera.' },
+  { n: 'dog2', name: 'Pepper', kind: 'Dog', desc: 'Terrier mix', alt: 'Pepper, a small scruffy terrier-mix dog tilting her head on a porch step.' },
+  { n: 'cat1', name: 'Marmalade', kind: 'Cat', desc: 'Orange tabby', alt: 'Marmalade, an orange tabby cat with bright eyes on a windowsill.' },
+  { n: 'cat2', name: 'Midnight', kind: 'Cat', desc: 'Black cat', alt: 'Midnight, a sleek black cat with golden eyes on a cozy blanket.' },
+] as const;
+---
+<Rescue title="Adopt" description="Meet the dogs and cats at Maple Hollow Animal Rescue and see how adoption works." eyebrow="Find your match" heading="Meet our animals" lead="These four are looking for a home. The animals and their names are invented for this concept site.">
+  <div class="wrap body">
+    <ul class="pets" style="margin-bottom:3rem">{pets.map((p) => (
+      <li><article class="pet"><span class="tag">{p.kind}</span><Photo name={p.n} alt={p.alt} sizes="(min-width: 900px) 22vw, 50vw" /><div class="body"><h2>{p.name}</h2><p>{p.desc}</p></div></article></li>
+    ))}</ul>
+    <div class="split">
+      <div class="frame"><Photo name="adoption" alt="A family welcoming a newly adopted dog at their front door, a child kneeling to hug it." sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div>
+        <h2 style="margin-top:0">How adoption works</h2>
+        <p>A real rescue would explain its steps here: meeting the animal, an application, a home check if needed, and the adoption fee and what it covers. This concept site leaves the details out rather than invent them.</p>
+        <p><a class="btn" href="/contact">Ask about adopting</a></p>
+      </div>
+    </div>
+  </div>
+</Rescue>

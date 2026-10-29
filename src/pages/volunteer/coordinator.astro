@@ -2,9 +2,8 @@
 import Rescue from '../../layouts/Rescue.astro';
 import Coordinator from '../../components/Coordinator.tsx';
 ---
-<Rescue title="Coordinator view" description="Volunteer coverage, sign-ups and CSV export for the volunteer coordinator.">
-  <div class="wrap">
-    <h1>Coordinator view</h1>
+<Rescue title="Coordinator view" description="Volunteer coverage, sign-ups and CSV export for the volunteer coordinator." eyebrow="For staff" heading="Coordinator view" lead="See coverage, sign-ups and export a list.">
+  <div class="wrap body">
     <p><a href="/volunteer">&larr; Back to volunteer shifts</a></p>
     <Coordinator client:load />
   </div>

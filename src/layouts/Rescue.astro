@@ -1,96 +1,57 @@
 ---
 import Base from './Base.astro';
 import Logo from '../components/Logo.astro';
-interface Props { title: string; description?: string }
+import '../styles/maple.css';
+interface Props { title: string; description?: string; heading?: string; lead?: string; eyebrow?: string; home?: boolean }
 const site = { name: 'Maple Hollow Animal Rescue', phone: '(555) 010-0177', email: 'hello@maplehollow-rescue.example', address: '27 Orchard Road, Maple Hollow' };
 const nav = [
+  { href: '/adopt', label: 'Adopt' },
   { href: '/volunteer', label: 'Volunteer' },
   { href: '/impact', label: 'Our impact' },
-  { href: '/donate', label: 'Donate' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
-const { title, description = `${title}: ${site.name}, a fictional animal rescue.` } = Astro.props;
+const { title, description = `${title}: ${site.name}, a fictional animal rescue.`, heading, lead, eyebrow, home = false } = Astro.props;
 const path = Astro.url.pathname;
 ---
 <Base title={title} description={description} siteName={site.name}>
   <div slot="header" class="site-head">
     <div class="wrap bar">
-      <a class="brand" href="/"><Logo /><span>{site.name}</span></a>
+      <a class="brand" href="/"><Logo /><span class="brand-text"><span class="brand-name">Maple Hollow</span><span class="brand-sub">Animal Rescue</span></span></a>
       <nav aria-label="Main">
-        <ul>{nav.map((n) => <li><a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>)}</ul>
+        <ul>
+          {nav.map((n) => <li><a href={n.href} aria-current={path.startsWith(n.href) ? 'page' : undefined}>{n.label}</a></li>)}
+          <li><a class="give" href="/donate" aria-current={path.startsWith('/donate') ? 'page' : undefined}>Donate</a></li>
+        </ul>
       </nav>
     </div>
   </div>
+  {!home && heading && (
+    <div class="page-head">
+      <div class="wrap">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h1>{heading}</h1>
+        {lead && <p class="lead">{lead}</p>}
+      </div>
+    </div>
+  )}
   <slot />
   <div slot="footer" class="site-foot">
-    <div class="wrap">
-      <p><strong>{site.name}</strong><br />{site.address}<br />{site.phone} · <a href={`mailto:${site.email}`}>{site.email}</a></p>
-      <p><a href="/volunteer/coordinator">Coordinator view</a> · <a href="/accessibility">Accessibility statement</a></p>
+    <div class="wrap foot-grid">
+      <div>
+        <p class="foot-name">{site.name}</p>
+        <p>{site.address}</p>
+        <p>{site.phone}</p>
+        <p><a href={`mailto:${site.email}`}>{site.email}</a></p>
+      </div>
+      <div>
+        <h2>Around the site</h2>
+        <ul>{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}<li><a href="/donate">Donate</a></li></ul>
+      </div>
+      <div>
+        <h2>More</h2>
+        <ul><li><a href="/volunteer/coordinator">Coordinator view</a></li><li><a href="/accessibility">Accessibility statement</a></li></ul>
+      </div>
     </div>
   </div>
 </Base>
-<style is:global>
-  :root { --brand:#5B2A6E; --accent:#8A5A00; --surface:#F7F2F9; --display:"Avenir Next","Trebuchet MS",system-ui,sans-serif; }
-  .btn.alt{background:#1F2937}
-  .btn.danger{background:#B42318}
-  .site-head{border-bottom:4px solid var(--brand)}
-  .bar{display:flex;flex-wrap:wrap;gap:.5rem 2rem;align-items:center;justify-content:space-between;padding-block:1rem}
-  .brand{display:inline-flex;align-items:center;gap:.6rem;font:800 1.35rem var(--display);color:var(--brand);text-decoration:none}
-  nav ul{display:flex;flex-wrap:wrap;gap:.25rem 1.25rem;list-style:none;margin:0;padding:0}
-  nav a{display:inline-block;padding:.6rem .25rem;color:var(--ink);font-weight:600}
-  nav a[aria-current="page"]{color:var(--brand);text-decoration-thickness:3px}
-  main{padding-block:2rem 4rem}
-  .site-foot{background:var(--surface);border-top:1px solid var(--line);padding-block:2rem}
-  .hero{background:var(--brand);color:#fff;padding-block:3rem}
-  .hero h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 .6rem}
-  .hero p{font-size:1.25rem;max-width:var(--measure);margin:0 0 1.25rem}
-  .hero .btn{background:#fff;color:var(--brand)}
-  .two{display:grid;gap:1.5rem 2.5rem;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
-  .stats{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));list-style:none;padding:0}
-  .stats li{border-left:5px solid var(--brand);padding:.3rem 1rem;max-width:none}
-  .stats strong{display:block;font:800 2.2rem var(--display);color:var(--brand)}
-  .prose{max-width:var(--measure)}
-  .prose h2{margin-top:2rem}
-  .actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-block:1.25rem}
-  .demo-note{background:#FFF8E1;border-left:6px solid var(--accent);padding:.7rem 1rem;max-width:none}
-  .controls{display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:flex-end;margin-bottom:.5rem}
-  label,legend{font-weight:700;display:block;margin-bottom:.25rem}
-  .choice{display:flex;gap:.6rem;align-items:center;min-height:44px}
-  .choice input{width:1.5rem;height:1.5rem;margin:0}
-  .choice label{margin:0;font-weight:400}
-  .hint{color:var(--muted);font-weight:400;font-size:.95rem}
-  input[type=text],input[type=email],input[type=tel],input[type=date],input[type=number],select{font:inherit;min-height:44px;padding:.4rem .7rem;border:2px solid var(--ink);border-radius:6px;background:var(--bg);color:var(--ink);width:100%;max-width:26rem}
-  .controls select{width:auto}
-  input[aria-invalid=true]{border-color:#B42318;border-width:3px}
-  form{display:grid;gap:1rem;margin-top:1rem;max-width:28rem}
-  .error{color:#B42318;font-weight:700;margin:.25rem 0 0}
-  .status{min-height:1.6em;color:var(--ink);margin:.5rem 0 1rem;font-weight:600}
-  .shifts{list-style:none;padding:0;display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
-  .shift{border:1px solid var(--line);border-radius:10px;padding:1.1rem 1.25rem;max-width:none}
-  .shift h2{margin:0;font-size:1.3rem}
-  .when{font-weight:700;margin:.2rem 0}
-  .spots{font-weight:700;color:#1D5E36}
-  .spots.full{color:#B42318}
-  .mine{background:var(--surface);border-radius:10px;padding:.75rem 1.25rem;margin-bottom:1.25rem}
-  .mine h2{font-size:1.2rem;margin:.25rem 0}
-  .plain{list-style:none;padding:0}
-  .plain li{padding:.3rem 0;max-width:none}
-  .linkbtn{background:none;border:0;color:var(--brand);text-decoration:underline;font:inherit;cursor:pointer;min-height:44px;padding:0 .4rem}
-  .meta{color:var(--muted);font-size:.95rem;font-weight:400}
-  table{border-collapse:collapse;width:100%}
-  th,td{text-align:left;padding:.7rem;border-bottom:1px solid var(--line);vertical-align:top}
-  caption{text-align:left;font-weight:700;padding-bottom:.5rem}
-  progress{width:7rem;height:.9rem;vertical-align:middle;accent-color:var(--brand)}
-  figure{margin:1.5rem 0}
-  figcaption{font-weight:700;margin-bottom:.5rem}
-  .bar-label{font:700 14px var(--body)}
-  input:focus-visible,select:focus-visible,input[type=date]:focus-within{outline:3px solid var(--focus);outline-offset:2px}
-  @media (max-width:640px){
-    table.stack thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-    table.stack tr{display:block;border-bottom:1px solid var(--line);padding:.6rem 0}
-    table.stack th,table.stack td{display:block;border:0;padding:.15rem 0}
-    table.stack td[data-label]::before{content:attr(data-label) ": ";font-weight:700}
-  }
-  @media print{.skip-link,.concept-note,nav,.actions{display:none}}
-</style>

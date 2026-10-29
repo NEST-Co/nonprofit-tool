@@ -1,25 +1,25 @@
 ---
 import Rescue from '../layouts/Rescue.astro';
 ---
-<Rescue title="Accessibility statement" description="How this site was tested for accessibility, with the results.">
-  <div class="wrap prose">
-    <h1>Accessibility statement</h1>
+<Rescue title="Accessibility statement" description="How this site was tested for accessibility, with the results." heading="Accessibility statement" lead="How this site was tested, with the results.">
+  <div class="wrap body prose" style="max-width:860px">
     <p>This site aims to meet WCAG 2.2 level AA. It is a concept project and the rescue is fictional, but the tests below were run on this site.</p>
 
     <h2>Test results, October 28, 2026</h2>
     <table>
-      <caption>Automated and scripted checks</caption>
+      <caption>Automated and scripted checks, run after the October 28 redesign and the photo update</caption>
       <thead><tr><th scope="col">Check</th><th scope="col">Result</th></tr></thead>
       <tbody>
-        <tr><th scope="row">axe-core (WCAG 2.0, 2.1 and 2.2 A and AA, plus best practices)</th><td>0 violations on 9 pages, at phone and desktop sizes</td></tr>
-        <tr><th scope="row">axe-core on the tool in use: sign-up form open, form with errors, after signing up, coordinator view, and the reset and add-shift error states</th><td>0 violations, at phone and desktop sizes</td></tr>
-        <tr><th scope="row">Lighthouse accessibility (8 pages, phone profile)</th><td>100 on every page</td></tr>
-        <tr><th scope="row">Lighthouse performance</th><td>100 on every page; the volunteer pages weigh about 20 KB</td></tr>
-        <tr><th scope="row">Lighthouse best practices</th><td>100 on every page</td></tr>
+        <tr><th scope="row">axe-core (WCAG 2.0, 2.1 and 2.2 A and AA, plus best practices)</th><td>0 violations on 10 pages, at phone and desktop sizes</td></tr>
+        <tr><th scope="row">axe-core on the tool in use: sign-up form open, form with errors, after signing up, coordinator view, and the reset and add-shift error states</th><td>0 violations on the tool in use: sign-up form open, form with errors, after signing up, coordinator view, and the reset and add-shift error states, at phone and desktop sizes</td></tr>
+        <tr><th scope="row">Lighthouse accessibility (4 pages: home, volunteer, adopt, impact, phone profile)</th><td>100 on every page tested</td></tr>
+        <tr><th scope="row">Lighthouse performance</th><td>100 on every page tested</td></tr>
+        <tr><th scope="row">Lighthouse best practices</th><td>100 on every page tested</td></tr>
         <tr><th scope="row">Keyboard</th><td>Skip link is the first stop and every stop shows a visible focus ring, including the date field</td></tr>
         <tr><th scope="row">Reflow at 320 and 640 pixels wide</th><td>No horizontal scrolling</td></tr>
         <tr><th scope="row">Text spacing</th><td>No clipped text</td></tr>
-        <tr><th scope="row">Structure</th><td>One h1 per page, no skipped heading levels, every page has a title and description</td></tr>
+        <tr><th scope="row">Page weight</th><td>About 120 KB or less for most pages. The volunteer page is about 400 KB because each shift shows a photo</td></tr>
+        <tr><th scope="row">Structure</th><td>One h1 per page, no skipped heading levels, every page has a title and description, every image has an alt attribute (empty for decoration)</td></tr>
       </tbody>
     </table>
 
@@ -37,11 +37,16 @@ import Rescue from '../layouts/Rescue.astro';
     <h2>Charts</h2>
     <p>The impact chart is a plain list with the year and the number written out, so the bars add to the text and are not the only way to read the figures.</p>
 
+    <h2>Images</h2>
+    <p>Photos that add meaning, such as the animal portraits, have alternative text. Purely decorative ones, such as the shift photos, have none so screen readers skip them. Images are served in modern formats at several sizes. The photos on this site are computer-generated for the concept. They are not real people, animals or places.</p>
+
     <h2>What was fixed during testing</h2>
     <ul>
       <li>The coordinator table scrolled sideways on a 320 pixel screen. It now stacks.</li>
       <li>The date field's focus ring was not detected. It now has an explicit one.</li>
       <li>The sign-up confirmation ended with a doubled period. It no longer does.</li>
+      <li>After the October 28 redesign, links in the tinted areas and the Cancel sign-up buttons were too faint. They are now darker.</li>
+      <li>The volunteer shift grid was a little too wide for a 320 pixel screen. It now fits.</li>
     </ul>
 
     <h2>Not yet tested</h2>

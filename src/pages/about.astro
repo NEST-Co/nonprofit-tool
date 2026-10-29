@@ -1,11 +1,15 @@
 ---
 import Rescue from '../layouts/Rescue.astro';
+import Photo from '../components/Photo.astro';
 ---
-<Rescue title="About us" description="About Maple Hollow Animal Rescue.">
-  <div class="wrap prose">
-    <h1>About Maple Hollow Animal Rescue</h1>
-    <p>Maple Hollow Animal Rescue is a fictional nonprofit, made up to show Nest Co.'s website and software work. The details here are invented.</p>
-    <h2>What this site demonstrates</h2>
-    <p>The volunteer sign-up and coordinator pages are a small working tool: shifts, spots left, sign-up and cancel, a coverage view and a CSV export. Here the data stays in your browser. For a real organization the same screens would connect to a database or an existing system, with staff logins, email confirmations and reminders.</p>
+<Rescue title="About us" description="About Maple Hollow Animal Rescue." eyebrow="Who we are" heading="About Maple Hollow Animal Rescue" lead="Maple Hollow Animal Rescue is a fictional nonprofit, made up to show Nest Co.'s website and software work. The details here are invented.">
+  <div class="wrap body">
+    <div class="split">
+      <div class="frame"><Photo name="shelter" alt="A staff member kneeling at a kennel door to greet a friendly dog in a bright, clean kennel area." sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div class="panel">
+        <h2>What this site demonstrates</h2>
+        <p>The volunteer sign-up and coordinator pages are a small working tool: shifts, spots left, sign-up and cancel, a coverage view and a CSV export. Here the data stays in your browser. For a real organization the same screens would connect to a database or an existing system, with staff logins, email confirmations and reminders.</p>
+      </div>
+    </div>
   </div>
 </Rescue>

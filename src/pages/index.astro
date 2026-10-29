@@ -1,31 +1,78 @@
 ---
 import Rescue from '../layouts/Rescue.astro';
+import Photo from '../components/Photo.astro';
+const pets = [
+  { n: 'dog1', name: 'Scout', kind: 'Dog', desc: 'Shepherd mix', alt: 'Scout, a friendly shepherd-mix dog smiling at the camera.' },
+  { n: 'dog2', name: 'Pepper', kind: 'Dog', desc: 'Terrier mix', alt: 'Pepper, a small scruffy terrier-mix dog tilting her head on a porch step.' },
+  { n: 'cat1', name: 'Marmalade', kind: 'Cat', desc: 'Orange tabby', alt: 'Marmalade, an orange tabby cat with bright eyes on a windowsill.' },
+  { n: 'cat2', name: 'Midnight', kind: 'Cat', desc: 'Black cat', alt: 'Midnight, a sleek black cat with golden eyes on a cozy blanket.' },
+] as const;
 ---
-<Rescue title="Welcome" description="Maple Hollow Animal Rescue finds homes for dogs and cats. See how to volunteer, donate or adopt.">
-  <div class="hero"><div class="wrap">
-    <h1>Every animal deserves a home</h1>
-    <p>Maple Hollow Animal Rescue takes in dogs and cats, cares for them, and finds them families. Volunteers make that possible.</p>
-    <a class="btn" href="/volunteer">Find a volunteer shift</a>
-  </div></div>
-  <div class="wrap">
-    <h2>This year so far</h2>
-    <ul class="stats">
-      <li><strong>163</strong>animals adopted</li>
-      <li><strong>212</strong>volunteer shifts filled</li>
-      <li><strong>38</strong>foster homes</li>
-    </ul>
-    <p class="meta">These numbers are invented for this concept site.</p>
-    <div class="two">
-      <section>
-        <h2>Volunteer with us</h2>
-        <p>Walk dogs, brush cats, help at adoption events or drive animals to the vet. Pick a shift that fits your week and sign up in a minute.</p>
-        <p><a href="/volunteer">See open shifts</a></p>
-      </section>
-      <section>
-        <h2>Give</h2>
-        <p>A gift covers food, vet care and bedding. See where your money goes.</p>
-        <p><a href="/donate">Ways to give</a> · <a href="/impact">Our impact</a></p>
-      </section>
+<Rescue home title="Welcome" description="Maple Hollow Animal Rescue finds homes for dogs and cats. See how to adopt, volunteer or donate.">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Dogs · Cats · Maple Hollow</p>
+        <h1 id="hero-h">Every animal deserves a <em>home</em>.</h1>
+        <p class="sub">We take in dogs and cats, care for them, and find them families. Volunteers make that possible.</p>
+        <div class="actions"><a class="btn" href="/volunteer">Find a volunteer shift</a><a class="btn line" href="/adopt">Meet our animals</a></div>
+      </div>
+      <div class="hero-photo">
+        <div class="frame"><Photo name="hero" eager sizes="(min-width: 900px) 50vw, 100vw" alt="A volunteer smiling as she hugs a happy golden dog on a sunny lawn, with a tabby cat resting beside them." /></div>
+        <div class="sticker"><strong>163</strong><span>animals adopted this year</span></div>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <section class="section tint" aria-labelledby="meet-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="meet-h">Meet some friends</h2><p>These four are looking for a home. Come say hello.</p></div>
+      <ul class="pets">{pets.map((p) => (
+        <li><article class="pet"><span class="tag">{p.kind}</span><Photo name={p.n} alt={p.alt} sizes="(min-width: 900px) 22vw, 50vw" /><div class="body"><h3>{p.name}</h3><p>{p.desc}</p></div></article></li>
+      ))}</ul>
+      <p class="note" style="margin-top:1.2rem">These animals and their names are invented for this concept site. <a href="/adopt">See how adoption works</a>.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="help-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="help-h">Three ways to help</h2><p>Pick the one that fits your week.</p></div>
+      <ul class="grid3">
+        <li><article class="card"><Photo name="walk" sizes="(min-width: 900px) 30vw, 100vw" alt="Two volunteers walking happy leashed dogs along a leafy autumn path." /><div class="body"><h3><a href="/volunteer">Volunteer</a></h3><p>Walk dogs, brush cats, help at adoption events or drive animals to the vet. Sign up in a minute.</p><span class="more" aria-hidden="true">See open shifts →</span></div></article></li>
+        <li><article class="card"><Photo name="foster" sizes="(min-width: 900px) 30vw, 100vw" alt="A family on a sofa with a shy rescue dog curled up between them and a kitten on the armrest." /><div class="body"><h3><a href="/about">Foster</a></h3><p>Give an animal a quiet home while it waits for a family. Ask us how fostering works.</p><span class="more" aria-hidden="true">Learn more →</span></div></article></li>
+        <li><article class="card"><Photo name="supplies" sizes="(min-width: 900px) 30vw, 100vw" alt="Donation bins filled with pet food, folded blankets, leashes and toys." /><div class="body"><h3><a href="/donate">Give</a></h3><p>A gift covers food, vet care and bedding. See where your money goes.</p><span class="more" aria-hidden="true">Ways to give →</span></div></article></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band" aria-labelledby="year-h">
+    <div class="wrap">
+      <h2 id="year-h">This year so far</h2>
+      <ul class="stats">
+        <li><strong>163</strong><span>animals adopted</span></li>
+        <li><strong>212</strong><span>volunteer shifts filled</span></li>
+        <li><strong>38</strong><span>foster homes</span></li>
+      </ul>
+      <p class="note">These numbers are invented for this concept site.</p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="story-h">
+    <div class="wrap split">
+      <div class="frame"><Photo name="adoption" alt="A family welcoming a newly adopted dog at their front door, a child kneeling to hug it." sizes="(min-width: 900px) 45vw, 100vw" /></div>
+      <div>
+        <p class="eyebrow">Going home</p>
+        <h2 id="story-h">The best day is when a dog walks out the door with a family.</h2>
+        <p>Everything we do, from the early walks to the vet visits, is so that day can happen. You can be part of it.</p>
+        <a class="btn" href="/adopt">How adoption works</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" aria-labelledby="cta-h">
+    <div class="wrap">
+      <div><h2 id="cta-h">Got a couple of hours to spare?</h2><p>Shifts run most days, from walking dogs to helping at adoption events. No experience needed.</p></div>
+      <a class="btn sun" href="/volunteer">Find a volunteer shift</a>
+    </div>
+  </section>
 </Rescue>
